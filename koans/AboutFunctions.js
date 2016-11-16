@@ -1,3 +1,5 @@
+var expect = require('chai').expect;
+
 describe("About Functions", function() {
 
   it("should declare functions", function() {
@@ -6,7 +8,7 @@ describe("About Functions", function() {
       return a + b;
     }
 
-    expect(add(1, 2)).toBe(FILL_ME_IN);
+    expect(add(1, 2)).to.equal(3);
   });
 
   it("should know internal variables override outer variables", function () {
@@ -21,9 +23,9 @@ describe("About Functions", function() {
       return message;
     }
 
-    expect(getMessage()).toBe(FILL_ME_IN);
-    expect(overrideMessage()).toBe(FILL_ME_IN);
-    expect(message).toBe(FILL_ME_IN);
+    expect(getMessage()).to.equal('Outer');
+    expect(overrideMessage()).to.equal('Inner');
+    expect(message).to.equal('Outer');
   });
 
   it("should have lexical scoping", function () {
@@ -35,7 +37,7 @@ describe("About Functions", function() {
       }
       return childfunction();
     }
-    expect(parentfunction()).toBe(FILL_ME_IN);
+    expect(parentfunction()).to.equal('local');
   });
 
   it("should use lexical scoping to synthesise functions", function () {
@@ -52,7 +54,7 @@ describe("About Functions", function() {
     var mysteryFunction3 = makeMysteryFunction(3);
     var mysteryFunction5 = makeMysteryFunction(5);
 
-    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(FILL_ME_IN);
+    expect(mysteryFunction3(10) + mysteryFunction5(5)).to.equal(23);
   });
 
   it("should allow extra function arguments", function () {
@@ -61,13 +63,13 @@ describe("About Functions", function() {
       return firstArg;
     }
 
-    expect(returnFirstArg("first", "second", "third")).toBe(FILL_ME_IN);
+    expect(returnFirstArg("first", "second", "third")).to.equal('first');
 
     function returnSecondArg(firstArg, secondArg) {
       return secondArg;
     }
 
-    expect(returnSecondArg("only give first arg")).toBe(FILL_ME_IN);
+    expect(returnSecondArg("only give first arg")).to.equal(undefined);
 
     function returnAllArgs() {
       var argsArray = [];
@@ -77,7 +79,7 @@ describe("About Functions", function() {
       return argsArray.join(",");
     }
 
-    expect(returnAllArgs("first", "second", "third")).toBe(FILL_ME_IN);
+    expect(returnAllArgs("first", "second", "third")).to.equal('first,second,third');
   });
 
   it("should pass functions as values", function () {
@@ -91,10 +93,10 @@ describe("About Functions", function() {
     };
 
     var praiseSinger = { givePraise: appendRules };
-    expect(praiseSinger.givePraise("John")).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise("John")).to.equal('John rules!');
 
     praiseSinger.givePraise = appendDoubleRules;
-    expect(praiseSinger.givePraise("Mary")).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise("Mary")).to.equal('Mary totally rules!');
 
   });
 });
